@@ -1,0 +1,12 @@
+[package]
+name = "learning-machines"
+version = "0.1.0"
+authors = ["james <LucasJ94@hotmail.co.uk>"]
+
+[dependencies]
+# iron and related packages
+iron = "0.3.0"
+router = "0.1.1"
+rustc-serialize = "0.3.19"
+
+rusty-machine = "0.4.1"
