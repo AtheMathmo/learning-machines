@@ -65,7 +65,6 @@
         d3.request('/models/kmeans')
             .post(body, (err, resp) => {
                 var json_resp = JSON.parse(resp['responseText']);
-                console.log(json_resp);
                 colourClusters(json_resp);
             });
 

@@ -20,7 +20,11 @@ fn get_matrix_from_data(input: &Json) -> Result<Matrix<f64>, &'static str> {
         for row in arr {
             rows += 1;
             if row.is_array() {
-                raw_data.extend(row.as_array().unwrap().iter().map(|ref x| x.as_f64().unwrap()).collect::<Vec<f64>>())
+                raw_data.extend(row.as_array()
+                    .unwrap()
+                    .iter()
+                    .map(|ref x| x.as_f64().unwrap())
+                    .collect::<Vec<f64>>())
             } else {
                 return Err("Data must be array of arrays.");
             }

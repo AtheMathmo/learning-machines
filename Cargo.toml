@@ -11,4 +11,4 @@ mount = "0.1.0"
 staticfile = "0.2.0"
 rustc-serialize = "0.3.19"
 
-rusty-machine = "0.4.1"
+rusty-machine = "0.4.2"

@@ -34,8 +34,8 @@ impl<T: ModelHandler> Handler for LearningHandler<T> {
 
         match body_json {
             Json::Object(map) => self.model_handler.handle(map),
-            _ => Ok(Response::with((status::BadRequest, "Json must be a map containing data.")))
+            _ => Ok(Response::with((status::BadRequest, "Json must be a map containing data."))),
         }
-        
+
     }
 }
