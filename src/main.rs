@@ -20,8 +20,10 @@ fn main() {
 
     mount.mount("/models/",
                 router!(
-        post "/kmeans" => server::LearningHandler::new(models::k_means::KMeansHandler)
+        post "/kmeans" => server::LearningHandler::new(models::k_means::KMeansHandler),
+        post "/dbscan" => server::LearningHandler::new(models::dbscan::DBSCANHandler)
     ));
+
     mount.mount("/", Static::new(Path::new("static")));
     Iron::new(mount).http("localhost:3000").unwrap();
 }

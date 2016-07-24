@@ -16,6 +16,19 @@ h2, h3, h4, h5, h6 {
     color: #404040;
 }
 
+ul {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+a {
+    text-decoration: none;
+    color: #025;
+}
+a:hover {
+    text-decoration: underline;
+}
+
 .plot {
     background-color: #fff;
     width: 500px;

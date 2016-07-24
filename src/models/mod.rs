@@ -7,6 +7,7 @@ use rustc_serialize::json::{Json, Object};
 use rm::linalg::Matrix;
 
 pub mod k_means;
+pub mod dbscan;
 
 pub trait ModelHandler: Send + Sync + 'static {
     fn handle(&self, input: Object) -> IronResult<Response>;

@@ -10,73 +10,20 @@
 <body>
     <h1>Learning Machines</h1>
 
-    <p>Interactive tutorials on machine learning.</p>
+    <h2>Interactive tutorials on machine learning.</h2>
     
-    <svg class="plot"></svg>
+    <p><i>Note: This website is in a shoddy state currently...</i></p>
 
-    <button type="button" onclick="clusterData()">Cluster</button>
+    <ul>
+        <li><a href="/kmeans.html">K-Means Clustering</a></li>
+        <li><a href="/dbscan.html">DBSCAN Clustering</a></li>
+    </ul>
 
-    <p>
-        The above lets you test out a K-Means Classifier. Click to
-        add new data points and hit 'Classify' to run the classifier.
-    </p>
 </body>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/chart.js"></script>
 
 <script>
-    function drawCircle(x, y, size) {
-        var plot = d3.select('svg');
-        plot.append("circle")
-            .attr('class', 'click-circle')
-            .attr('cx', x)
-            .attr('cy', y)
-            .attr('r', size);
-    }
-
-    function colourClusters(clusters) {
-        var plot = d3.select('svg');
-        var i = 0;
-        plot.selectAll("circle").selectAll(function() {
-            d3.select(this).attr('class',
-                clusters[i] == 0 ? 'red-circle' : 'blue-circle');
-            i += 1;
-        });
-    }
-
-    function getCoords() {
-        var plot = d3.select('svg');
-        let coords = [];
-        plot.selectAll("circle").selectAll(function() {
-            coords.push([
-                parseFloat(d3.select(this).attr('cx')),
-                parseFloat(d3.select(this).attr('cy'))
-            ]);
-        });
-
-        return coords;
-    }
-
-    function clusterData() {
-        var coords = getCoords();
-        var body = JSON.stringify({ data: coords });
-
-        d3.request('/models/kmeans')
-            .post(body, (err, resp) => {
-                var json_resp = JSON.parse(resp['responseText']);
-                colourClusters(json_resp);
-            });
-
-    }
-
-    (function() {
-        var plot = d3.select('svg');
-        
-        plot.on('click', function() {
-            var coords = d3.mouse(this);
-            drawCircle(coords[0], coords[1], 5);
-        });
-        
-    })();
+createScatter();
 </script>
