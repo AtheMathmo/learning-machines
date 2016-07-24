@@ -1,18 +1,27 @@
 extern crate iron;
+#[macro_use]
 extern crate router;
+extern crate mount;
+extern crate staticfile;
 extern crate rustc_serialize;
 extern crate rusty_machine as rm;
-
-use iron::prelude::*;
-use router::Router;
 
 mod server;
 mod models;
 
-fn main() {
-    let mut router = Router::new();
-    router.post("/kmeans",
-                server::LearningHandler::new(models::k_means::KMeansHandler));
+use iron::prelude::*;
+use mount::Mount;
+use staticfile::Static;
 
-    Iron::new(router).http("localhost:3000").unwrap();
+use std::path::Path;
+
+fn main() {
+    let mut mount = Mount::new();
+
+    mount.mount("/models/",
+                router!(
+        post "/kmeans" => server::LearningHandler::new(models::k_means::KMeansHandler)
+    ));
+    mount.mount("/", Static::new(Path::new("static")));
+    Iron::new(mount).http("localhost:3000").unwrap();
 }

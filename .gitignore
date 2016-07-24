@@ -1,1 +1,6 @@
-target
+target/
+Cargo.lock
+*~
+*.swp
+*.swo
+.vscode

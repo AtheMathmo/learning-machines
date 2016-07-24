@@ -31,7 +31,6 @@ impl<T: ModelHandler> LearningHandler<T> {
 impl<T: ModelHandler> Handler for LearningHandler<T> {
     fn handle(&self, req: &mut Request) -> IronResult<Response> {
         let body_json = try!(self.parse_json(&mut req.body));
-        println!("data: {}", body_json);
 
         match body_json {
             Json::Object(map) => self.model_handler.handle(map),
