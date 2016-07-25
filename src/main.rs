@@ -25,5 +25,5 @@ fn main() {
     ));
 
     mount.mount("/", Static::new(Path::new("static")));
-    Iron::new(mount).http("localhost:3000").unwrap();
+    Iron::new(mount).http("0.0.0.0:4000").unwrap();
 }
