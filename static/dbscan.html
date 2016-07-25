@@ -7,6 +7,10 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
+<nav>
+    <ul><li><a href="/">Learning Machines</a></li></ul>
+</nav>
+
 <body>
     <h1>DBSCAN Clustering</h1>
 
@@ -14,7 +18,7 @@
 
     <svg class="plot"></svg>
 
-    <button type="button" onclick="clusterData('dbscan')">Cluster</button>
+    <button type="button" onclick="clusterData('dbscan', null)">Cluster</button>
 
     <p>
         The above lets you test out a DBSCAN Classifier. Click to
@@ -28,3 +32,14 @@
 <script>
 createScatter();
 </script>
+
+<footer>
+    <ul>
+        <li>
+            <a href="https://github.com/AtheMathmo/learning-machines"><img src="assets/GitHub-Mark-32px.png"> Learning machines</a>
+        </li>
+        <li>
+            <a href="https://github.com/AtheMathmo/rusty-machine"><img src="assets/GitHub-Mark-32px.png"> Rusty-machine</a>
+        </li>
+    </ul>
+</footer>

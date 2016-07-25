@@ -32,9 +32,16 @@ function getCoords() {
     return coords;
 }
 
-function clusterData(model) {
+function clusterData(model, params) {
     var coords = getCoords();
-    var body = JSON.stringify({ data: coords });
+    var body = {};
+    if (params == null) {
+        body = JSON.stringify({ data: coords });
+    } else {
+        params['data'] = coords;
+        body = JSON.stringify(params);
+    }
+    
 
     d3.request('/models/' + model)
         .post(body, (err, resp) => {

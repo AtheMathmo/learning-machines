@@ -1,8 +1,37 @@
 body {
-    background-color: #ffffee;
+    background-color: #eeeeee;
     width: 80%;
     text-align: center;
     margin: 0 auto;
+}
+
+p {
+    text-align: left;
+}
+
+nav {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+footer {
+    border-top: 1px solid #d5d5d5;
+    font-size: .8em;
+}
+
+nav ul, footer ul {
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    padding: 0px;
+    list-style: none;
+    font-weight: bold;
+}
+
+nav ul li, footer ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+footer ul li img {
+    vertical-align: middle;
 }
 
 h1 {
@@ -36,16 +65,5 @@ a:hover {
     height: 500px;
     border: 2px solid black;
     border-radius: 15px;
-}
-
-.click-circle {
-    fill: black;
-}
-
-.red-circle {
-    fill: red;
-}
-
-.blue-circle {
-    fill: blue;
+    display: block;
 }
