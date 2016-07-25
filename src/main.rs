@@ -13,7 +13,18 @@ use iron::prelude::*;
 use mount::Mount;
 use staticfile::Static;
 
+use std::str::FromStr;
+use std::env;
 use std::path::Path;
+
+fn get_server_port() -> u16 {
+    let port_str = env::var("PORT");
+
+    match port_str {
+        Ok(p) => FromStr::from_str(&p).unwrap_or(3000),
+        Err(_) => 3000,
+    }
+}
 
 fn main() {
     let mut mount = Mount::new();
@@ -25,5 +36,5 @@ fn main() {
     ));
 
     mount.mount("/", Static::new(Path::new("static")));
-    Iron::new(mount).http("0.0.0.0:4000").unwrap();
+    Iron::new(mount).http(("0.0.0.0", get_server_port())).unwrap();
 }
