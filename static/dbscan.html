@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-  <title>Learning Machines - Interactive tutorials to learn machine learning</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-
-<nav>
-    <ul><li><a href="/">Learning Machines</a></li></ul>
-</nav>
+<div w3-include-html="nav.html"></div>
 
 <body>
     <h1>DBSCAN Clustering</h1>
@@ -18,7 +7,13 @@
 
     <svg class="plot"></svg>
 
-    <button type="button" onclick="clusterData('dbscan', null)">Cluster</button>
+    <form id="dbscan-toolbar" class="toolbar">
+        <label for="dbscan_eps">Eps:</label>
+        <input type="range" id="dbscan_eps" min="1" max="200" value="50" />
+        <label for="dbscan_min_count">Min count:</label>
+        <input type="number" id="dbscan_min_count" min="1" value="3" />
+        <input type="submit" value="Cluster" />
+    </form>
 
     <p>
         The above lets you test out a DBSCAN Classifier. Click to
@@ -26,20 +21,25 @@
     </p>
 </body>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<div w3-include-html="footer.html"></div>
+
+<script src="js/d3.min.js"></script>
 <script src="js/chart.js"></script>
+<script src="js/w3data.js"></script>
+<script src="js/jquery-3.1.0.js"></script>
 
 <script>
-createScatter();
-</script>
+$( '#dbscan-toolbar' ).submit( ( event ) => {
+    var dataPoints = d3.select('svg').selectAll('circle').size();
+    var dbscanEps = parseFloat($('#dbscan_eps').val());
+    var dbscanMinCount = parseFloat($('#dbscan_min_count').val())
 
-<footer>
-    <ul>
-        <li>
-            <a href="https://github.com/AtheMathmo/learning-machines"><img src="assets/GitHub-Mark-32px.png"> Learning machines</a>
-        </li>
-        <li>
-            <a href="https://github.com/AtheMathmo/rusty-machine"><img src="assets/GitHub-Mark-32px.png"> Rusty-machine</a>
-        </li>
-    </ul>
-</footer>
+    if (dataPoints > 0) {
+        clusterData('dbscan', { eps : dbscanEps, minCount: dbscanMinCount });
+    }
+
+    event.preventDefault();
+});
+createScatter();
+w3IncludeHTML();
+</script>

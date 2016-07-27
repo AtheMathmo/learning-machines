@@ -45,8 +45,12 @@ function clusterData(model, params) {
 
     d3.request('/models/' + model)
         .post(body, (err, resp) => {
-            var json_resp = JSON.parse(resp['responseText']);
-            colourClusters(json_resp);
+            if (err) {
+                console.log(err);
+            } else {
+                var json_resp = JSON.parse(resp['responseText']);
+                colourClusters(json_resp);
+            }
         });
 }
 
