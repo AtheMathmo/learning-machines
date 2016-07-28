@@ -9,6 +9,11 @@ iron = "0.3.0"
 router = "0.1.1"
 mount = "0.1.0"
 staticfile = "0.2.0"
+handlebars-iron = "0.16.0"
 rustc-serialize = "0.3.19"
 
 rusty-machine = "0.4.2"
+
+[features]
+
+dev = ["handlebars-iron/watch"]

@@ -1,4 +1,4 @@
-<div w3-include-html="nav.html"></div>
+{{> nav }}
 
 <body>
     <h1>Learning Machines</h1>
@@ -19,15 +19,10 @@
 
     <h4>Here is what exists so far:</h4>
     <ul>
-        <li><a href="/kmeans.html">K-Means Clustering</a></li>
-        <li><a href="/dbscan.html">DBSCAN Clustering</a></li>
+        <li><a href="/kmeans">K-Means Clustering</a></li>
+        <li><a href="/dbscan">DBSCAN Clustering</a></li>
     </ul>
 
 </body>
 
-<div w3-include-html="footer.html"></div>
-
-<script src="js/w3data.js"></script>
-<script>
-w3IncludeHTML();
-</script>
+{{> footer }}

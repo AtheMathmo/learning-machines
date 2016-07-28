@@ -1,19 +1,21 @@
-<div w3-include-html="nav.html"></div>
+{{> nav }}
 
 <body>
     <h1>DBSCAN Clustering</h1>
 
     <h2>Interactive DBSCAN clustering.</h2>
 
-    <svg class="plot"></svg>
+    <div class="plot-container">
+        <svg class="plot"></svg>
 
-    <form id="dbscan-toolbar" class="toolbar">
-        <label for="dbscan_eps">Eps:</label>
-        <input type="range" id="dbscan_eps" min="1" max="200" value="50" />
-        <label for="dbscan_min_count">Min count:</label>
-        <input type="number" id="dbscan_min_count" min="1" value="3" />
-        <input type="submit" value="Cluster" />
-    </form>
+        <form id="dbscan-toolbar" class="toolbar">
+            <label for="dbscan_eps">Eps:</label>
+            <input type="range" id="dbscan_eps" min="1" max="200" value="50" />
+            <label for="dbscan_min_count">Min count:</label>
+            <input type="number" id="dbscan_min_count" min="1" value="3" />
+            <input type="submit" value="Cluster" />
+        </form>
+    </div>
 
     <p>
         The above lets you test out a DBSCAN Classifier. Click to
@@ -21,14 +23,15 @@
     </p>
 </body>
 
-<div w3-include-html="footer.html"></div>
+{{> footer }}
 
 <script src="js/d3.min.js"></script>
 <script src="js/chart.js"></script>
-<script src="js/w3data.js"></script>
 <script src="js/jquery-3.1.0.js"></script>
 
 <script>
+createScatter();
+
 $( '#dbscan-toolbar' ).submit( ( event ) => {
     var dataPoints = d3.select('svg').selectAll('circle').size();
     var dbscanEps = parseFloat($('#dbscan_eps').val());
@@ -40,6 +43,4 @@ $( '#dbscan-toolbar' ).submit( ( event ) => {
 
     event.preventDefault();
 });
-createScatter();
-w3IncludeHTML();
 </script>

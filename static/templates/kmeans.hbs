@@ -1,4 +1,4 @@
-<div w3-include-html="nav.html"></div>
+{{> nav }}
 
 <body>
     <h1>K Means Clustering</h1>
@@ -8,7 +8,7 @@
     <svg class="plot"></svg>
 
     <form id="kmeans-toolbar" class="toolbar">
-        K:
+        <label for="kmeans_clusters">K:</label>
         <input type="number" id="kmeans_clusters" min="1" value="2" max="20" />
         <input type="submit" value="Cluster" />
     </form>
@@ -19,14 +19,15 @@
     </p>
 </body>
 
-<div w3-include-html="footer.html"></div>
+{{> footer }}
 
 <script src="js/d3.min.js"></script>
 <script src="js/chart.js"></script>
-<script src="js/w3data.js"></script>
 <script src="js/jquery-3.1.0.js"></script>
 
 <script>
+createScatter();
+
 $( '#kmeans-toolbar' ).submit( ( event ) => {
     var dataPoints = d3.select('svg').selectAll('circle').size();
     var clusterCount = parseFloat($('#kmeans_clusters').val());
@@ -38,8 +39,4 @@ $( '#kmeans-toolbar' ).submit( ( event ) => {
 
     event.preventDefault();
 });
-
-
-createScatter();
-w3IncludeHTML();
 </script>

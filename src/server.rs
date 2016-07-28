@@ -5,7 +5,7 @@ use std::io::Read;
 use iron::prelude::*;
 use iron::status;
 use iron::Handler;
-
+use hbsi::Template;
 use rustc_serialize::json::Json;
 
 use models::ModelHandler;
@@ -37,5 +37,23 @@ impl<T: ModelHandler> Handler for LearningHandler<T> {
             _ => Ok(Response::with((status::BadRequest, "Json must be a map containing data."))),
         }
 
+    }
+}
+
+pub struct TemplateHandler {
+    path: &'static str
+}
+
+impl TemplateHandler {
+    pub fn new(path: &'static str) -> TemplateHandler {
+        TemplateHandler { path: path }
+    }
+}
+
+impl Handler for TemplateHandler {
+    fn handle(&self, _: &mut Request) -> IronResult<Response> {
+        let mut resp = Response::new();
+        resp.set_mut(Template::new(self.path, ())).set_mut(status::Ok);
+        Ok(resp)
     }
 }
