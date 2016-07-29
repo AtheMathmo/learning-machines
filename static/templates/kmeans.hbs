@@ -3,15 +3,22 @@
 <body>
     <h1>K Means Clustering</h1>
 
+    <p>
+        The K-Means Clustering algorithm provides a way to group together <i>similar</i> data points.
+        This similarity can be measured using any metric but Euclidean Distance is most commonly used.
+    </p>
+
     <h2>Interactive K-Means clustering.</h2>
     
-    <svg class="plot"></svg>
+    <div class="plot-container">
+        <svg class="plot"></svg>
 
-    <form id="kmeans-toolbar" class="toolbar">
-        <label for="kmeans_clusters">K:</label>
-        <input type="number" id="kmeans_clusters" min="1" value="2" max="20" />
-        <input type="submit" value="Cluster" />
-    </form>
+        <form id="kmeans-toolbar" class="toolbar">
+            <label for="kmeans_clusters">K:</label>
+            <input type="number" id="kmeans_clusters" min="1" value="2" max="20" />
+            <input type="submit" value="Cluster" />
+        </form>
+    </div>
 
     <p>
         The above lets you test out a K-Means Classifier. Click to

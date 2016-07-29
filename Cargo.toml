@@ -5,14 +5,14 @@ authors = ["james <LucasJ94@hotmail.co.uk>"]
 
 [dependencies]
 # iron and related packages
-iron = "0.3.0"
-router = "0.1.1"
-mount = "0.1.0"
-staticfile = "0.2.0"
-handlebars-iron = "0.16.0"
+iron = "0.4.0"
+router = "0.2.0"
+mount = "0.2.1"
+staticfile = "0.3.0"
+handlebars-iron = "0.17.0"
 rustc-serialize = "0.3.19"
 
-rusty-machine = "0.4.2"
+rusty-machine = "0.4.3"
 
 [features]
 
