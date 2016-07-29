@@ -7,6 +7,8 @@ body {
 
 p {
     text-align: left;
+    font-size: 1.15em;
+    margin: 30px;
 }
 
 nav {
@@ -14,6 +16,7 @@ nav {
 }
 
 footer {
+    margin-top: 50px;
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
@@ -23,6 +26,8 @@ nav ul, footer ul {
     padding: 0px;
     list-style: none;
     font-weight: bold;
+    text-align: left;
+    font-size: 20pxem;
 }
 
 nav ul li, footer ul li {
@@ -41,13 +46,9 @@ h1 {
 }
 
 h2, h3, h4, h5, h6 {
+    margin-top: 100px;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     color: #404040;
-}
-
-ul {
-    text-align: left;
-    font-size: 1.5em;
 }
 
 a {
@@ -57,4 +58,20 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+ol {
+    margin-left: 50px;
+}
+ol li {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+ul {
+    margin-left: 50px;
+}
+ul li {
+    text-align: left;
+    font-size: 1.5em;
 }

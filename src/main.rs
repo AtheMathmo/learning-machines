@@ -74,6 +74,7 @@ fn main() {
     mount.mount("/",
                 router!(
         get "/" => server::TemplateHandler::new("index"),
+        get "/mlintro" => server::TemplateHandler::new("ml_intro"),
         get "/kmeans" => server::TemplateHandler::new("kmeans"),
         get "/dbscan" => server::TemplateHandler::new("dbscan"),
     ));
