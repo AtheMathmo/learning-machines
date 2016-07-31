@@ -6,6 +6,13 @@
     <h2>Interactive DBSCAN clustering.</h2>
 
     <div class="plot-container">
+        <form id="plot-toolbar">
+            <select id="data">
+                <option value="none">None</option>
+                <option value="gaussian">Gaussian</option>
+            </select>
+        </form>
+
         <svg class="plot"></svg>
 
         <form id="dbscan-toolbar" class="toolbar">
@@ -32,15 +39,31 @@
 <script>
 createScatter();
 
-$( '#dbscan-toolbar' ).submit( ( event ) => {
-    var dataPoints = d3.select('svg').selectAll('circle').size();
-    var dbscanEps = parseFloat($('#dbscan_eps').val());
-    var dbscanMinCount = parseFloat($('#dbscan_min_count').val())
+$( document ).ready( () => {
+    $( '#dbscan-toolbar' ).submit( ( event ) => {
+        var dataPoints = d3.select('svg').selectAll('circle').size();
+        var dbscanEps = parseFloat($('#dbscan_eps').val());
+        var dbscanMinCount = parseFloat($('#dbscan_min_count').val())
 
-    if (dataPoints > 0) {
-        clusterData('dbscan', { eps : dbscanEps, minCount: dbscanMinCount });
-    }
+        if (dataPoints > 0) {
+            clusterData('dbscan', { eps : dbscanEps, minCount: dbscanMinCount });
+        }
 
-    event.preventDefault();
+        event.preventDefault();
+    });
+
+    $( '#plot-toolbar' ).change( ( event ) => {
+        var selected = $( '#data' ).val();
+
+        if (selected === 'none') {
+            deleteAllPoints();
+        } else {
+            $.getJSON(`/data/${selected}.json`, (data) => {
+                drawAllCircles(data['data']);
+            });
+        }
+
+        event.preventDefault();
+    });  
 });
 </script>

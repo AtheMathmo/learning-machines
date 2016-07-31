@@ -1,4 +1,5 @@
 var CSS_COLOR_NAMES = ["Red","Blue","Green","Yellow","Purple","Orange"];
+var CIRCLE_SIZE = 5;
 
 function drawCircle(x, y, size) {
     var plot = d3.select('svg');
@@ -7,6 +8,19 @@ function drawCircle(x, y, size) {
         .attr('cx', x)
         .attr('cy', y)
         .attr('r', size);
+}
+
+function drawAllCircles(data) {
+    var plot = d3.select('svg');
+
+    for (var i = 0; i < data.length; i++) {
+        var point = data[i]
+        plot.append("circle")
+            .style('fill', 'black')
+            .attr('cx', point[0])
+            .attr('cy', point[1])
+            .attr('r', CIRCLE_SIZE)
+    }
 }
 
 function colourClusters(clusters) {
@@ -30,6 +44,11 @@ function getCoords() {
     });
 
     return coords;
+}
+
+function deleteAllPoints() {
+    var plot = d3.select('svg');
+    plot.selectAll("circle").remove();
 }
 
 function clusterData(model, params) {
@@ -59,6 +78,6 @@ function createScatter() {
     
     plot.on('click', function() {
         var coords = d3.mouse(this);
-        drawCircle(coords[0], coords[1], 5);
+        drawCircle(coords[0], coords[1], CIRCLE_SIZE);
     });    
 }

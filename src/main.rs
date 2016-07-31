@@ -68,7 +68,8 @@ fn main() {
 
     mount.mount("/assets/", Static::new(Path::new("static/assets")))
         .mount("/css/", Static::new(Path::new("static/css")))
-        .mount("/js/", Static::new(Path::new("static/js")));
+        .mount("/js/", Static::new(Path::new("static/js")))
+        .mount("/data/", Static::new(Path::new("static/data")));;
 
     // Mount the templating
     mount.mount("/",

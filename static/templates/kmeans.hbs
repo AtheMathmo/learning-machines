@@ -22,6 +22,13 @@
     <h2>Interactive K-Means clustering.</h2>
     
     <div class="plot-container">
+        <form id="plot-toolbar">
+            <select id="data">
+                <option value="none">None</option>
+                <option value="gaussian">Gaussian</option>
+            </select>
+        </form>
+
         <svg class="plot"></svg>
 
         <form id="kmeans-toolbar" class="toolbar">
@@ -46,15 +53,34 @@
 <script>
 createScatter();
 
-$( '#kmeans-toolbar' ).submit( ( event ) => {
-    var dataPoints = d3.select('svg').selectAll('circle').size();
-    var clusterCount = parseFloat($('#kmeans_clusters').val());
-    if (dataPoints < clusterCount) {
-        alert('There cannot be less data points than clusters.');
-    } else {
-        clusterData('kmeans', { k : clusterCount });
-    }
+$( document ).ready( () => {
+    $( '#kmeans-toolbar' ).submit( ( event ) => {
+        var dataPoints = d3.select('svg').selectAll('circle').size();
+        var clusterCount = parseFloat($('#kmeans_clusters').val());
+        if (dataPoints < clusterCount) {
+            alert('There cannot be less data points than clusters.');
+        } else {
+            clusterData('kmeans', { k : clusterCount });
+        }
 
-    event.preventDefault();
+        event.preventDefault();
+    });
+
+    $( '#plot-toolbar' ).change( ( event ) => {
+        var selected = $( '#data' ).val();
+
+        if (selected === 'none') {
+            deleteAllPoints();
+        } else {
+            $.getJSON(`/data/${selected}.json`, (data) => {
+                drawAllCircles(data['data']);
+            });
+        }
+
+        event.preventDefault();
+    });  
 });
+
+
+
 </script>
