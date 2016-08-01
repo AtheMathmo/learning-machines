@@ -23,9 +23,11 @@
     
     <div class="plot-container">
         <form id="plot-toolbar">
+            <label for="data">Data Set:</label>
             <select id="data">
                 <option value="none">None</option>
                 <option value="gaussian">Gaussian</option>
+                <option value="circles">Circles</option>
             </select>
         </form>
 
@@ -40,7 +42,7 @@
 
     <p>
         The above lets you test out a K-Means Classifier. Click to
-        add new data points and hit 'Classify' to run the classifier.
+        add new data points and hit 'Cluster' to run the classifier.
     </p>
 </body>
 
@@ -68,10 +70,9 @@ $( document ).ready( () => {
 
     $( '#plot-toolbar' ).change( ( event ) => {
         var selected = $( '#data' ).val();
-
-        if (selected === 'none') {
-            deleteAllPoints();
-        } else {
+        deleteAllPoints();
+        
+        if (selected != 'none') {
             $.getJSON(`/data/${selected}.json`, (data) => {
                 drawAllCircles(data['data']);
             });

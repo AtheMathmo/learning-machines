@@ -3,20 +3,38 @@
 <body>
     <h1>DBSCAN Clustering</h1>
 
+    <p>
+        The DBSCAN Clustering algorithm provides a way to group together <i>similar</i> data points.
+        This similarity can be measured using any metric but Euclidean Distance is most commonly used.
+    </p>
+
+    <p>
+        The algorithm works roughly as follows:
+    </p>
+
+    <p>
+        There is a cluster when the number of points within distance &epsilon; is greater than some
+        <i>min points</i> threshold. We go through each point and build clusters by finding points
+        densely connected to it.
+    </p>
+
+
     <h2>Interactive DBSCAN clustering.</h2>
 
     <div class="plot-container">
         <form id="plot-toolbar">
+            <label for="data">Data Set:</label>
             <select id="data">
                 <option value="none">None</option>
                 <option value="gaussian">Gaussian</option>
+                <option value="circles">Circles</option>
             </select>
         </form>
 
         <svg class="plot"></svg>
 
         <form id="dbscan-toolbar" class="toolbar">
-            <label for="dbscan_eps">Eps:</label>
+            <label for="dbscan_eps">&epsilon;:</label>
             <input type="range" id="dbscan_eps" min="1" max="200" value="50" />
             <label for="dbscan_min_count">Min count:</label>
             <input type="number" id="dbscan_min_count" min="1" value="3" />
@@ -26,7 +44,7 @@
 
     <p>
         The above lets you test out a DBSCAN Classifier. Click to
-        add new data points and hit 'Classify' to run the classifier.
+        add new data points and hit 'Cluster' to run the classifier.
     </p>
 </body>
 
@@ -54,10 +72,9 @@ $( document ).ready( () => {
 
     $( '#plot-toolbar' ).change( ( event ) => {
         var selected = $( '#data' ).val();
-
-        if (selected === 'none') {
-            deleteAllPoints();
-        } else {
+        deleteAllPoints();
+        
+        if (selected != 'none') {
             $.getJSON(`/data/${selected}.json`, (data) => {
                 drawAllCircles(data['data']);
             });
